@@ -1,66 +1,90 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 600">
   <defs>
-    <!-- Sombra realista del dispositivo -->
-    <filter id="shadow" x="-10%" y="-10%" width="130%" height="130%">
-      <feDropShadow dx="0" dy="15" stdDeviation="15" flood-color="#4a6741" flood-opacity="0.12"/>
+    <!-- Sombra profunda para el teléfono -->
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="25" stdDeviation="25" flood-color="#3d5836" flood-opacity="0.15"/>
     </filter>
-    <!-- Degradado suave para la pantalla -->
-    <linearGradient id="screen-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#faf7f0" />
-      <stop offset="100%" stop-color="#f0e8d4" />
-    </linearGradient>
+    
+    <!-- Máscara para la pantalla -->
+    <clipPath id="screen-clip">
+      <rect x="58" y="28" width="284" height="544" rx="32" />
+    </clipPath>
+    
+    <!-- Tipografía corporativa estricta -->
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
+      .font-semi-bold { font-family: 'Torus Pro', 'Montserrat', sans-serif; font-weight: 600; }
+      .font-bold { font-family: 'Torus Pro', 'Montserrat', sans-serif; font-weight: 700; }
+      .font-regular { font-family: 'Torus Pro', 'Montserrat', sans-serif; font-weight: 400; }
+    </style>
   </defs>
 
-  <!-- Chasis del móvil (Efecto cristal) -->
-  <rect x="50" y="20" width="300" height="560" rx="40" fill="#ffffff" filter="url(#shadow)" />
-  <rect x="52" y="22" width="296" height="556" rx="38" fill="#e8e8e8" />
-  
-  <!-- Pantalla activa -->
-  <rect x="58" y="28" width="284" height="544" rx="32" fill="url(#screen-grad)" />
+  <!-- Chasis del Teléfono (Color Crema y Oro) -->
+  <rect x="50" y="20" width="300" height="560" rx="40" fill="#fcfbf8" filter="url(#shadow)" />
+  <rect x="53" y="23" width="294" height="554" rx="37" fill="#C8A86A" />
+  <rect x="56" y="26" width="288" height="548" rx="34" fill="#050505" />
 
-  <!-- Notch / Isla dinámica (Toque moderno) -->
-  <rect x="150" y="38" width="100" height="24" rx="12" fill="#000000" />
-  <circle cx="166" cy="50" r="5" fill="#111" />
-  <circle cx="236" cy="50" r="4" fill="#050505" />
-
-  <!-- Borde interior elegante de la invitación -->
-  <rect x="74" y="80" width="252" height="476" rx="16" fill="none" stroke="#C8A86A" stroke-width="1.5" stroke-dasharray="4 6" opacity="0.8"/>
-
-  <!-- Nombres y Fecha -->
-  <text x="200" y="150" font-family="Cormorant Garamond, serif" font-size="34" font-weight="600" fill="#4a6741" text-anchor="middle">Marina &amp; Manuel</text>
-  
-  <path d="M 160 170 L 240 170" fill="none" stroke="#C8A86A" stroke-width="1"/>
-  
-  <text x="200" y="195" font-family="Montserrat, sans-serif" font-size="10" font-weight="700" letter-spacing="2" fill="#666" text-anchor="middle">SEPTIEMBRE · 2026</text>
-
-  <!-- Panel de Cuenta Atrás -->
-  <g transform="translate(0, 15)">
-      <rect x="90" y="220" width="45" height="45" rx="8" fill="#fff" stroke="#C8A86A" stroke-width="0.5" opacity="0.8"/>
-      <text x="112" y="242" font-family="Montserrat, sans-serif" font-size="16" font-weight="700" fill="#4a6741" text-anchor="middle">105</text>
-      <text x="112" y="256" font-family="Montserrat, sans-serif" font-size="8" fill="#999" text-anchor="middle">DÍAS</text>
+  <!-- Pantalla Interactiva -->
+  <g clip-path="url(#screen-clip)">
+    <!-- Fotografía de fondo: Banquete de boda / Convite elegante (Unsplash) -->
+    <image href="https://images.unsplash.com/photo-1520854221256-17451cc331bf?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=800&amp;q=80" x="58" y="28" width="284" height="544" preserveAspectRatio="xMidYMid slice" />
     
-      <rect x="145" y="220" width="45" height="45" rx="8" fill="#fff" stroke="#C8A86A" stroke-width="0.5" opacity="0.8"/>
-      <text x="167" y="242" font-family="Montserrat, sans-serif" font-size="16" font-weight="700" fill="#4a6741" text-anchor="middle">14</text>
-      <text x="167" y="256" font-family="Montserrat, sans-serif" font-size="8" fill="#999" text-anchor="middle">HRS</text>
+    <!-- Filtro oscuro base para resaltar el panel frontal -->
+    <rect x="58" y="28" width="284" height="544" fill="#111" opacity="0.15" />
+
+    <!-- Panel de Cristal Crema (Limpio e intuitivo) -->
+    <rect x="68" y="80" width="264" height="425" rx="12" fill="rgba(253, 251, 246, 0.93)" stroke="rgba(200, 168, 106, 0.5)" stroke-width="1.5" />
     
-      <rect x="200" y="220" width="45" height="45" rx="8" fill="#fff" stroke="#C8A86A" stroke-width="0.5" opacity="0.8"/>
-      <text x="222" y="242" font-family="Montserrat, sans-serif" font-size="16" font-weight="700" fill="#4a6741" text-anchor="middle">30</text>
-      <text x="222" y="256" font-family="Montserrat, sans-serif" font-size="8" fill="#999" text-anchor="middle">MIN</text>
+    <!-- Decoración superior estructurada (Líneas rectas) -->
+    <rect x="180" y="105" width="40" height="2" fill="#C8A86A" />
+
+    <!-- Nombres de los novios -->
+    <text x="200" y="145" class="font-semi-bold" font-size="28" fill="#3d5836" text-anchor="middle">Iván y Vega</text>
+
+    <!-- Fecha -->
+    <text x="200" y="175" class="font-bold" font-size="11" letter-spacing="4" fill="#888" text-anchor="middle">12 · 09 · 2026</text>
+
+    <!-- Bloque de Ubicación -->
+    <rect x="90" y="200" width="220" height="32" rx="4" fill="rgba(200, 168, 106, 0.1)" stroke="rgba(200, 168, 106, 0.3)" stroke-width="1" />
+    <text x="200" y="220" class="font-semi-bold" font-size="10" fill="#3d5836" text-anchor="middle">Hacienda Los Ángeles, Sevilla</text>
+
+    <!-- Cuenta Atrás (Cajas estructuradas y limpias) -->
+    <g transform="translate(5, 10)">
+      <rect x="90" y="245" width="45" height="50" rx="6" fill="#fff" stroke="#e8e8e8" stroke-width="1"/>
+      <text x="112" y="270" class="font-bold" font-size="16" fill="#3d5836" text-anchor="middle">105</text>
+      <text x="112" y="285" class="font-regular" font-size="8" fill="#999" text-anchor="middle">DÍAS</text>
+
+      <rect x="145" y="245" width="45" height="50" rx="6" fill="#fff" stroke="#e8e8e8" stroke-width="1"/>
+      <text x="167" y="270" class="font-bold" font-size="16" fill="#3d5836" text-anchor="middle">14</text>
+      <text x="167" y="285" class="font-regular" font-size="8" fill="#999" text-anchor="middle">HRS</text>
+
+      <rect x="200" y="245" width="45" height="50" rx="6" fill="#fff" stroke="#e8e8e8" stroke-width="1"/>
+      <text x="222" y="270" class="font-bold" font-size="16" fill="#3d5836" text-anchor="middle">30</text>
+      <text x="222" y="285" class="font-regular" font-size="8" fill="#999" text-anchor="middle">MIN</text>
+
+      <rect x="255" y="245" width="45" height="50" rx="6" fill="#fff" stroke="#e8e8e8" stroke-width="1"/>
+      <text x="277" y="270" class="font-bold" font-size="16" fill="#3d5836" text-anchor="middle">00</text>
+      <text x="277" y="285" class="font-regular" font-size="8" fill="#999" text-anchor="middle">SEG</text>
+    </g>
+
+    <!-- Botón Principal (Contraste alto) -->
+    <rect x="90" y="335" width="220" height="42" rx="4" fill="#3d5836" />
+    <text x="200" y="360" class="font-semi-bold" font-size="10" letter-spacing="1" fill="#fff" text-anchor="middle">✓ CONFIRMAR ASISTENCIA</text>
+
+    <!-- Botón Secundario (Limpieza) -->
+    <rect x="90" y="390" width="220" height="42" rx="4" fill="#fff" stroke="#3d5836" stroke-width="1.5" />
+    <text x="200" y="416" class="font-semi-bold" font-size="10" letter-spacing="1" fill="#3d5836" text-anchor="middle">MAPA E INDICACIONES</text>
     
-      <rect x="255" y="220" width="45" height="45" rx="8" fill="#fff" stroke="#C8A86A" stroke-width="0.5" opacity="0.8"/>
-      <text x="277" y="242" font-family="Montserrat, sans-serif" font-size="16" font-weight="700" fill="#4a6741" text-anchor="middle">00</text>
-      <text x="277" y="256" font-family="Montserrat, sans-serif" font-size="8" fill="#999" text-anchor="middle">SEG</text>
+    <!-- Decoración inferior estructurada -->
+    <rect x="180" y="470" width="40" height="2" fill="#C8A86A" />
   </g>
 
-  <!-- Botones de Interacción Reales -->
-  <rect x="90" y="320" width="220" height="42" rx="21" fill="#4a6741" />
-  <text x="200" y="345" font-family="Montserrat, sans-serif" font-size="10" font-weight="800" letter-spacing="1" fill="#fff" text-anchor="middle">✓ CONFIRMAR ASISTENCIA</text>
+  <!-- Notch (Forma de píldora recta) -->
+  <rect x="150" y="38" width="100" height="22" rx="10" fill="#000000" />
+  <rect x="180" y="47" width="40" height="4" rx="2" fill="#151515" />
 
-  <rect x="90" y="375" width="220" height="42" rx="21" fill="none" stroke="#4a6741" stroke-width="1.5" />
-  <text x="200" y="400" font-family="Montserrat, sans-serif" font-size="10" font-weight="800" letter-spacing="1" fill="#4a6741" text-anchor="middle">📍 VER MAPA</text>
+  <!-- Sello de Autoría de MotionLogic -->
+  <text x="200" y="545" class="font-regular" font-size="9" fill="#999" text-anchor="middle">Sincronización con Google Sheets</text>
+  <text x="200" y="558" class="font-bold" font-size="10" fill="#3d5836" text-anchor="middle">by MotionLogic</text>
 
-  <!-- Sello de garantía tecnológico -->
-  <path d="M195 465 L200 470 L208 460" fill="none" stroke="#C8A86A" stroke-width="2"/>
-  <text x="200" y="495" font-family="Montserrat, sans-serif" font-size="9" fill="#777" text-anchor="middle">Datos vinculados con Google Sheets</text>
-  <text x="200" y="508" font-family="Montserrat, sans-serif" font-size="9" font-weight="600" fill="#4a6741" text-anchor="middle">by MotionLogic</text>
 </svg>
