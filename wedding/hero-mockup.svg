@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 600">
+  <defs>
+    <!-- Sombra realista del dispositivo -->
+    <filter id="shadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="15" stdDeviation="15" flood-color="#4a6741" flood-opacity="0.12"/>
+    </filter>
+    <!-- Degradado suave para la pantalla -->
+    <linearGradient id="screen-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#faf7f0" />
+      <stop offset="100%" stop-color="#f0e8d4" />
+    </linearGradient>
+  </defs>
+
+  <!-- Chasis del móvil (Efecto cristal) -->
+  <rect x="50" y="20" width="300" height="560" rx="40" fill="#ffffff" filter="url(#shadow)" />
+  <rect x="52" y="22" width="296" height="556" rx="38" fill="#e8e8e8" />
+  
+  <!-- Pantalla activa -->
+  <rect x="58" y="28" width="284" height="544" rx="32" fill="url(#screen-grad)" />
+
+  <!-- Notch / Isla dinámica (Toque moderno) -->
+  <rect x="150" y="38" width="100" height="24" rx="12" fill="#000000" />
+  <circle cx="166" cy="50" r="5" fill="#111" />
+  <circle cx="236" cy="50" r="4" fill="#050505" />
+
+  <!-- Borde interior elegante de la invitación -->
+  <rect x="74" y="80" width="252" height="476" rx="16" fill="none" stroke="#C8A86A" stroke-width="1.5" stroke-dasharray="4 6" opacity="0.8"/>
+
+  <!-- Nombres y Fecha -->
+  <text x="200" y="150" font-family="Cormorant Garamond, serif" font-size="34" font-weight="600" fill="#4a6741" text-anchor="middle">Marina &amp; Manuel</text>
+  
+  <path d="M 160 170 L 240 170" fill="none" stroke="#C8A86A" stroke-width="1"/>
+  
+  <text x="200" y="195" font-family="Montserrat, sans-serif" font-size="10" font-weight="700" letter-spacing="2" fill="#666" text-anchor="middle">SEPTIEMBRE · 2026</text>
+
+  <!-- Panel de Cuenta Atrás -->
+  <g transform="translate(0, 15)">
+      <rect x="90" y="220" width="45" height="45" rx="8" fill="#fff" stroke="#C8A86A" stroke-width="0.5" opacity="0.8"/>
+      <text x="112" y="242" font-family="Montserrat, sans-serif" font-size="16" font-weight="700" fill="#4a6741" text-anchor="middle">105</text>
+      <text x="112" y="256" font-family="Montserrat, sans-serif" font-size="8" fill="#999" text-anchor="middle">DÍAS</text>
+    
+      <rect x="145" y="220" width="45" height="45" rx="8" fill="#fff" stroke="#C8A86A" stroke-width="0.5" opacity="0.8"/>
+      <text x="167" y="242" font-family="Montserrat, sans-serif" font-size="16" font-weight="700" fill="#4a6741" text-anchor="middle">14</text>
+      <text x="167" y="256" font-family="Montserrat, sans-serif" font-size="8" fill="#999" text-anchor="middle">HRS</text>
+    
+      <rect x="200" y="220" width="45" height="45" rx="8" fill="#fff" stroke="#C8A86A" stroke-width="0.5" opacity="0.8"/>
+      <text x="222" y="242" font-family="Montserrat, sans-serif" font-size="16" font-weight="700" fill="#4a6741" text-anchor="middle">30</text>
+      <text x="222" y="256" font-family="Montserrat, sans-serif" font-size="8" fill="#999" text-anchor="middle">MIN</text>
+    
+      <rect x="255" y="220" width="45" height="45" rx="8" fill="#fff" stroke="#C8A86A" stroke-width="0.5" opacity="0.8"/>
+      <text x="277" y="242" font-family="Montserrat, sans-serif" font-size="16" font-weight="700" fill="#4a6741" text-anchor="middle">00</text>
+      <text x="277" y="256" font-family="Montserrat, sans-serif" font-size="8" fill="#999" text-anchor="middle">SEG</text>
+  </g>
+
+  <!-- Botones de Interacción Reales -->
+  <rect x="90" y="320" width="220" height="42" rx="21" fill="#4a6741" />
+  <text x="200" y="345" font-family="Montserrat, sans-serif" font-size="10" font-weight="800" letter-spacing="1" fill="#fff" text-anchor="middle">✓ CONFIRMAR ASISTENCIA</text>
+
+  <rect x="90" y="375" width="220" height="42" rx="21" fill="none" stroke="#4a6741" stroke-width="1.5" />
+  <text x="200" y="400" font-family="Montserrat, sans-serif" font-size="10" font-weight="800" letter-spacing="1" fill="#4a6741" text-anchor="middle">📍 VER MAPA</text>
+
+  <!-- Sello de garantía tecnológico -->
+  <path d="M195 465 L200 470 L208 460" fill="none" stroke="#C8A86A" stroke-width="2"/>
+  <text x="200" y="495" font-family="Montserrat, sans-serif" font-size="9" fill="#777" text-anchor="middle">Datos vinculados con Google Sheets</text>
+  <text x="200" y="508" font-family="Montserrat, sans-serif" font-size="9" font-weight="600" fill="#4a6741" text-anchor="middle">by MotionLogic</text>
+</svg>
