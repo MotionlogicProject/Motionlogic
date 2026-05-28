@@ -468,6 +468,24 @@
     .footer-bottom a { color: rgba(255,255,255,0.5); text-decoration: none; }
     .footer-bottom a:hover { color: #fff; }
 
+    /* ─── ENLACE MOTIONWEDDING ────────────────── */
+    .nav-special a {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--orange) !important;
+    }
+    .badge-bodas {
+      background-color: var(--orange);
+      color: var(--white);
+      font-size: 0.6rem;
+      font-weight: 800;
+      padding: 2px 6px;
+      border-radius: 4px;
+      letter-spacing: 0.5px;
+      transform: translateY(-2px);
+    }
+
     /* ─── MOBILE NAV ──────────────────────────── */
     @media (max-width: 900px) {
       nav { grid-template-columns: auto auto; }
@@ -514,7 +532,6 @@
 </head>
 <body>
 
-<!-- NAV -->
 <nav id="navbar">
   <a href="#hero" class="nav-logo">
     <img src="logo.png" alt="MotionLogic isotipo" style="height:42px; width:auto; display:block;" />
@@ -525,6 +542,7 @@
     <li><a href="#servicios">Servicios</a></li>
     <li><a href="#precios">Tarifas</a></li>
     <li><a href="#proceso">Proceso</a></li>
+    <li class="nav-special"><a href="/wedding/">Bodas <span class="badge-bodas">NUEVO</span></a></li>
     <li><a href="#contacto">Contacto</a></li>
   </ul>
   <div class="nav-cta-wrap">
@@ -535,16 +553,15 @@
   </div>
 </nav>
 
-<!-- MOBILE MENU -->
 <div class="mobile-menu" id="mobileMenu">
   <a href="#sobre" onclick="toggleMenu()">Nosotros</a>
   <a href="#servicios" onclick="toggleMenu()">Servicios</a>
   <a href="#precios" onclick="toggleMenu()">Tarifas</a>
   <a href="#proceso" onclick="toggleMenu()">Proceso</a>
+  <a href="/wedding/" style="color: var(--orange);">Bodas ★</a>
   <a href="#contacto" class="m-cta" onclick="toggleMenu()">Solicitar Propuesta</a>
 </div>
 
-<!-- HERO -->
 <section id="hero">
   <div class="hero-grid"></div>
   <div class="hero-bg-shapes"></div>
@@ -579,7 +596,6 @@
   </div>
 </section>
 
-<!-- SOBRE -->
 <section id="sobre">
   <div class="section-header fade-up">
     <span class="section-label">¿Quiénes somos?</span>
@@ -610,7 +626,6 @@
   </div>
 </section>
 
-<!-- SERVICIOS -->
 <section id="servicios">
   <div class="section-header fade-up">
     <span class="section-label">Servicios</span>
@@ -651,7 +666,6 @@
   </div>
 </section>
 
-<!-- PRECIOS REDES -->
 <section id="precios">
   <div class="section-header centered fade-up">
     <span class="section-label">Tarifas Redes Sociales</span>
@@ -714,7 +728,6 @@
   </p>
 </section>
 
-<!-- AUTOMATIZACION -->
 <section id="automatizacion">
   <div class="section-header fade-up">
     <span class="section-label">Automatización Empresarial</span>
@@ -753,7 +766,6 @@
   </div>
 </section>
 
-<!-- COMBINADOS -->
 <section id="combinados">
   <div class="section-header fade-up">
     <span class="section-label">Paquetes Combinados</span>
@@ -794,7 +806,6 @@
   </div>
 </section>
 
-<!-- PROCESO -->
 <section id="proceso">
   <div class="section-header centered fade-up">
     <span class="section-label">¿Cómo trabajamos?</span>
@@ -825,7 +836,6 @@
   </div>
 </section>
 
-<!-- CONTACTO -->
 <section id="contacto">
   <div class="section-header fade-up">
     <span class="section-label">Contacto</span>
@@ -909,7 +919,6 @@
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <div class="footer-grid">
     <div class="footer-brand">
