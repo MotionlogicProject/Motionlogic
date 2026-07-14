@@ -128,6 +128,8 @@
       border: 2px solid var(--green);
     }
     .btn-secondary:hover { background: var(--green); color: #fff; }
+    
+    /* Contenedor del mockup */
     .hero-image {
       position: relative; border-radius: 20px; overflow: hidden;
       background: linear-gradient(135deg, #f5ede0, #e8d8b8);
@@ -320,7 +322,6 @@
     /* ─── FOOTER ───────────────────────────── */
     footer { background: var(--dark); color: #fff; padding: 60px 5% 40px; }
     .footer-content { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 40px; }
-    .footer-brand { }
     .footer-logo {
       font-family: var(--font-serif);
       font-size: 1.5rem; font-weight: 600; margin-bottom: 12px;
@@ -400,8 +401,10 @@
         <a href="#paquetes" class="btn-secondary">Ver paquetes</a>
       </div>
     </div>
+    
+    <!-- CONTENEDOR CON TU NUEVO MOCKUP -->
     <div class="hero-image">
-      <img src="hero-mockup.svg" alt="Mockup de invitación digital de boda en iPhone" style="width: 100%; height: auto; max-height: 600px; display: block; margin: 0 auto; filter: drop-shadow(0 20px 40px rgba(0,0,0,0.05));" />
+      <img src="mockup.png" alt="Mockup de invitación digital de boda en iPhone" style="width: 100%; height: auto; max-height: 600px; display: block; margin: 0 auto; filter: drop-shadow(0 20px 40px rgba(0,0,0,0.05));" />
     </div>
   </div>
 </section>
@@ -623,7 +626,7 @@
           <div class="contact-icon">📍</div>
           <div class="contact-item-text">
             <div class="label">Servicio</div>
-            <div class="value">Todo España · Remote</div>
+            <div class="value">Todo España · Remoto</div>
           </div>
         </div>
         <div class="contact-item">
@@ -654,30 +657,14 @@
         </div>
         <div class="form-group">
           <label>Teléfono</label>
-          <input type="tel" name="telefono" placeholder="+34 600 000 000" />
+          <input type="tel" name="telefono" placeholder="Tu teléfono" />
         </div>
       </div>
-      <div class="form-row">
-        <div class="form-group">
-          <label>Fecha de la boda</label>
-          <input type="date" name="fecha_boda" />
-        </div>
-        <div class="form-group">
-          <label>Paquete de interés</label>
-          <select name="paquete">
-            <option value="">Selecciona un paquete</option>
-            <option>Digital Starter (150€)</option>
-            <option>Smart Wedding (380€)</option>
-            <option>Experiencia Total (650€)</option>
-            <option>No estoy seguro</option>
-          </select>
-        </div>
+      <div class="form-group" style="margin-bottom: 20px;">
+        <label>Mensaje</label>
+        <textarea name="message" placeholder="Cuéntanos la fecha estimada de tu boda, lugar o cualquier detalle..." required></textarea>
       </div>
-      <div class="form-group">
-        <label>Cuéntanos tu visión</label>
-        <textarea name="mensaje" placeholder="¿Cómo imagináis vuestra invitación? Estilos, ideas especiales, dudas..."></textarea>
-      </div>
-      <button type="submit" class="btn-submit">Enviar solicitud →</button>
+      <button type="submit" class="btn-submit">Enviar solicitud</button>
     </form>
   </div>
 </section>
@@ -687,91 +674,69 @@
   <div class="footer-content">
     <div class="footer-brand">
       <div class="footer-logo">MOTION<span>WEDDING</span></div>
-      <p class="footer-desc">Invitaciones digitales premium para bodas. Diseño, automatización y gestión de invitados en una única plataforma.</p>
-      <div class="footer-socials">
-        <a href="#" class="social-btn">ig</a>
-        <a href="#" class="social-btn">in</a>
-        <a href="#" class="social-btn">tk</a>
-      </div>
+      <p class="footer-desc">Invitaciones digitales de boda interactivas y automatizadas. Simplifica la organización de tu gran día con un diseño premium único.</p>
     </div>
     <div class="footer-col">
-      <h4>Producto</h4>
+      <h4>Servicios</h4>
       <ul>
         <li><a href="#paquetes">Paquetes</a></li>
         <li><a href="#caracteristicas">Características</a></li>
         <li><a href="#galeria">Ejemplos</a></li>
-        <li><a href="#proceso">Proceso</a></li>
       </ul>
     </div>
     <div class="footer-col">
-      <h4>Empresa</h4>
+      <h4>Compañía</h4>
       <ul>
-        <li><a href="https://motionlogic.es">MotionLogic</a></li>
+        <li><a href="#proceso">Proceso</a></li>
+        <li><a href="#testimonios">Testimonios</a></li>
         <li><a href="#contacto">Contacto</a></li>
-        <li><a href="#">Blog</a></li>
       </ul>
     </div>
     <div class="footer-col">
       <h4>Legal</h4>
       <ul>
+        <li><a href="#">Aviso Legal</a></li>
         <li><a href="#">Privacidad</a></li>
-        <li><a href="#">Aviso legal</a></li>
         <li><a href="#">Cookies</a></li>
       </ul>
     </div>
   </div>
   <div class="footer-bottom">
-    <span>© 2025 MotionWedding by MotionLogic. Todos los derechos reservados.</span>
-    <a href="https://motionlogic.es">www.motionlogic.es</a>
+    <p>&copy; 2026 MotionWedding. Todos los derechos reservados.</p>
+    <p>Desarrollado por <a href="https://motionlogic.es" target="_blank">MotionLogic</a></p>
   </div>
 </footer>
 
+<!-- SCRIPTS INTERACTIVOS -->
 <script>
-  // NAV scroll effect
+  // Navbar cambio de estilo con scroll
   const navbar = document.getElementById('navbar');
   window.addEventListener('scroll', () => {
-    navbar.classList.toggle('scrolled', window.scrollY > 20);
+    if (window.scrollY > 50) {
+      navbar.classList.add('scrolled');
+    } else {
+      navbar.classList.remove('scrolled');
+    }
   });
 
-  // Scroll animations
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((e, i) => {
-      if (e.isIntersecting) {
-        setTimeout(() => e.target.classList.add('visible'), i * 80);
+  // Animaciones Fade-Up al hacer scroll
+  const fadeUpElements = document.querySelectorAll('.fade-up');
+  const observerOptions = {
+    threshold: 0.15,
+    rootMargin: '0px 0px -50px 0px'
+  };
+
+  const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.1 });
-  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+  }, observerOptions);
 
-  // Form submit feedback
-  const form = document.querySelector('.contact-form');
-  if (form) {
-    form.addEventListener('submit', function(e) {
-      const btn = this.querySelector('.btn-submit');
-      btn.textContent = '⏳ Enviando...';
-      btn.disabled = true;
-      setTimeout(() => {
-        btn.textContent = '✓ Solicitud enviada. Te contactamos en 24h';
-        btn.style.background = '#3d5836';
-      }, 1200);
-    });
-  }
-
-  // Package CTA buttons
-  document.querySelectorAll('.package-cta').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const form = document.querySelector('.contact-form');
-      form.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    });
-  });
-
-  // Gallery items
-  document.querySelectorAll('.gallery-item').forEach(item => {
-    item.addEventListener('click', () => {
-      console.log('Abriendo proyecto...');
-      // Aquí puedes añadir un modal con el proyecto completo
-    });
-  });
+  fadeUpElements.forEach(el => observer.observe(el));
 </script>
+
 </body>
 </html>
