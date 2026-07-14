@@ -230,20 +230,32 @@
       display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; margin-top: 60px;
     }
     .gallery-item {
-      border-radius: 12px; overflow: hidden; aspect-ratio: 1;
+      border-radius: 12px; overflow: hidden; aspect-ratio: 3/4;
       background: var(--gray-light); position: relative; cursor: pointer;
       transition: transform .3s;
+      border: 1px solid rgba(74,103,65,0.1);
+      box-shadow: 0 4px 15px rgba(74,103,65,0.08);
     }
-    .gallery-item:hover { transform: scale(1.03); }
-    .gallery-item img { width: 100%; height: 100%; object-fit: cover; }
+    .gallery-item:hover { transform: scale(1.05); box-shadow: 0 8px 25px rgba(74,103,65,0.15); }
+    .gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .gallery-item-overlay {
       position: absolute; inset: 0;
       background: rgba(74,103,65,0.85); display: flex;
+      flex-direction: column;
       align-items: center; justify-content: center;
-      color: #fff; font-size: 1.1rem; opacity: 0;
+      color: #fff; opacity: 0;
       transition: opacity .3s;
+      gap: 12px;
     }
     .gallery-item:hover .gallery-item-overlay { opacity: 1; }
+    .gallery-item-overlay-title {
+      font-family: var(--font-serif);
+      font-size: 1.1rem; font-weight: 600;
+    }
+    .gallery-item-overlay-action {
+      font-size: .85rem; letter-spacing: 1px; text-transform: uppercase;
+      font-weight: 700; color: var(--gold);
+    }
 
     /* ─── PROCESO ────────────────────────────── */
     #proceso { background: var(--white); }
@@ -343,6 +355,95 @@
     }
     .footer-bottom a { color: var(--gold); text-decoration: none; }
 
+    /* ─── MODAL ──────────────────────────────── */
+    .modal-ejemplos {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.7);
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      backdrop-filter: blur(4px);
+    }
+
+    .modal-ejemplos.activo {
+      display: flex;
+      animation: fadeIn 0.4s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .modal-content {
+      position: relative;
+      background: #fff;
+      border-radius: 8px;
+      width: 100%;
+      max-width: 800px;
+      height: 85vh;
+      max-height: 900px;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      animation: slideUp 0.4s ease;
+    }
+
+    @keyframes slideUp {
+      from {
+        transform: translateY(50px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      width: 40px;
+      height: 40px;
+      border: none;
+      background: rgba(42, 56, 40, 0.1);
+      color: #2a3828;
+      font-size: 1.5rem;
+      cursor: pointer;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+      z-index: 10001;
+    }
+
+    .modal-close:hover {
+      background: rgba(42, 56, 40, 0.2);
+    }
+
+    .modal-header {
+      padding: 20px;
+      border-bottom: 1px solid rgba(90, 122, 82, 0.15);
+    }
+
+    .modal-header h3 {
+      font-family: var(--font-serif);
+      font-size: 1.5rem;
+      color: #2a3828;
+      margin: 0;
+    }
+
+    .modal-iframe {
+      flex: 1;
+      border: none;
+      border-radius: 0 0 8px 8px;
+    }
+
     /* ─── ANIMATIONS ──────────────────────────── */
     .fade-up { opacity: 0; transform: translateY(40px); }
     .fade-up.visible { opacity: 1; transform: translateY(0); transition: opacity 0.6s ease, transform 0.6s ease; }
@@ -359,6 +460,7 @@
       .form-row { grid-template-columns: 1fr; }
       .section-title { font-size: 1.8rem; }
       .hero-text h1 { font-size: 2rem; }
+      .modal-content { max-width: 100%; height: 90vh; }
     }
   </style>
 </head>
@@ -507,39 +609,73 @@
   </div>
 </section>
 
-<!-- GALERÍA -->
+<!-- GALERÍA DE EJEMPLOS -->
 <section id="galeria">
   <div class="section-header centered fade-up">
     <span class="section-label">Ejemplos reales</span>
     <h2 class="section-title">Invitaciones que hemos creado</h2>
+    <p class="section-subtitle">Haz clic en cualquiera para ver una demostración completa e interactiva</p>
   </div>
   <div class="gallery-grid">
-    <div class="gallery-item fade-up">
-      <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 300'%3E%3Crect width='300' height='300' fill='%23f5ede0'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' font-family='Cormorant Garamond, serif' font-size='28' fill='%234a6741'%3ECarlos %26 Laura%3C/text%3E%3C/svg%3E" alt="Invitación Carlos & Laura" />
-      <div class="gallery-item-overlay">Ver proyecto</div>
+
+    <!-- CARLOS & LAURA -->
+    <div class="gallery-item fade-up" onclick="abrirEjemplo('carlos-laura', 'Carlos & Laura · 25.05.2025')">
+      <img src="images/carloslaura.png" alt="Invitación Carlos & Laura" />
+      <div class="gallery-item-overlay">
+        <div class="gallery-item-overlay-title">Carlos & Laura</div>
+        <div class="gallery-item-overlay-action">Ver invitación →</div>
+      </div>
     </div>
-    <div class="gallery-item fade-up">
-      <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 300'%3E%3Crect width='300' height='300' fill='%23e8d8b8'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' font-family='Cormorant Garamond, serif' font-size='28' fill='%234a6741'%3ESara %26 Diego%3C/text%3E%3C/svg%3E" alt="Invitación Sara & Diego" />
-      <div class="gallery-item-overlay">Ver proyecto</div>
+
+    <!-- SARA & DIEGO -->
+    <div class="gallery-item fade-up" onclick="abrirEjemplo('sara-diego', 'Sara & Diego · 15.09.2025')">
+      <img src="images/saradiego.png" alt="Invitación Sara & Diego" />
+      <div class="gallery-item-overlay">
+        <div class="gallery-item-overlay-title">Sara & Diego</div>
+        <div class="gallery-item-overlay-action">Ver invitación →</div>
+      </div>
     </div>
-    <div class="gallery-item fade-up">
-      <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 300'%3E%3Crect width='300' height='300' fill='%23f0e8d4'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' font-family='Cormorant Garamond, serif' font-size='28' fill='%234a6741'%3EAna %26 David%3C/text%3E%3C/svg%3E" alt="Invitación Ana & David" />
-      <div class="gallery-item-overlay">Ver proyecto</div>
+
+    <!-- ANA & DAVID -->
+    <div class="gallery-item fade-up" onclick="abrirEjemplo('ana-david', 'Ana & David · 22.08.2025')">
+      <img src="images/anadavid.png" alt="Invitación Ana & David" />
+      <div class="gallery-item-overlay">
+        <div class="gallery-item-overlay-title">Ana & David</div>
+        <div class="gallery-item-overlay-action">Ver invitación →</div>
+      </div>
     </div>
-    <div class="gallery-item fade-up">
-      <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 300'%3E%3Crect width='300' height='300' fill='%23ede4d0'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' font-family='Cormorant Garamond, serif' font-size='28' fill='%234a6741'%3ESofia %26 Pablo%3C/text%3E%3C/svg%3E" alt="Invitación Sofia & Pablo" />
-      <div class="gallery-item-overlay">Ver proyecto</div>
+
+    <!-- SOFÍA & PABLO -->
+    <div class="gallery-item fade-up" onclick="abrirEjemplo('sofia-pablo', 'Sofía & Pablo · 10.07.2025')">
+      <img src="images/sofiapablo.png" alt="Invitación Sofía & Pablo" />
+      <div class="gallery-item-overlay">
+        <div class="gallery-item-overlay-title">Sofía & Pablo</div>
+        <div class="gallery-item-overlay-action">Ver invitación →</div>
+      </div>
     </div>
-    <div class="gallery-item fade-up">
-      <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 300'%3E%3Crect width='300' height='300' fill='%23f5f1e8'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' font-family='Cormorant Garamond, serif' font-size='28' fill='%234a6741'%3EMarta %26 Javier%3C/text%3E%3C/svg%3E" alt="Invitación Marta & Javier" />
-      <div class="gallery-item-overlay">Ver proyecto</div>
+
+    <!-- MARTA & JAVIER -->
+    <div class="gallery-item fade-up" onclick="abrirEjemplo('marta-javier', 'Marta & Javier · 30.06.2025')">
+      <img src="images/martajavier.png" alt="Invitación Marta & Javier" />
+      <div class="gallery-item-overlay">
+        <div class="gallery-item-overlay-title">Marta & Javier</div>
+        <div class="gallery-item-overlay-action">Ver invitación →</div>
+      </div>
     </div>
-    <div class="gallery-item fade-up">
-      <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 300'%3E%3Crect width='300' height='300' fill='%23faf7f0'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' font-family='Cormorant Garamond, serif' font-size='28' fill='%234a6741'%3EValeria %26 Andrés%3C/text%3E%3C/svg%3E" alt="Invitación Valeria & Andrés" />
-      <div class="gallery-item-overlay">Ver proyecto</div>
-    </div>
+
   </div>
 </section>
+
+<!-- MODAL PARA INVITACIONES -->
+<div id="modal-ejemplos" class="modal-ejemplos">
+  <div class="modal-content">
+    <button class="modal-close" onclick="cerrarEjemplo()">✕</button>
+    <div class="modal-header">
+      <h3 id="modal-titulo">Invitación</h3>
+    </div>
+    <iframe id="modal-iframe" src="" class="modal-iframe"></iframe>
+  </div>
+</div>
 
 <!-- PROCESO -->
 <section id="proceso">
@@ -736,6 +872,56 @@
   }, observerOptions);
 
   fadeUpElements.forEach(el => observer.observe(el));
+
+  // ════ FUNCIONES MODAL ════
+  function abrirEjemplo(nombreArchivo, titulo) {
+    const modal = document.getElementById('modal-ejemplos');
+    const iframe = document.getElementById('modal-iframe');
+    const tituloModal = document.getElementById('modal-titulo');
+    
+    // Construye la URL correcta
+    const url = `ejemplos/${nombreArchivo}.html`;
+    
+    // Asigna valores
+    iframe.src = url;
+    tituloModal.textContent = titulo;
+    
+    // Muestra el modal
+    modal.classList.add('activo');
+    
+    // Evita scroll en el body
+    document.body.style.overflow = 'hidden';
+  }
+
+  function cerrarEjemplo() {
+    const modal = document.getElementById('modal-ejemplos');
+    const iframe = document.getElementById('modal-iframe');
+    
+    // Cierra el modal
+    modal.classList.remove('activo');
+    iframe.src = '';
+    
+    // Restaura scroll
+    document.body.style.overflow = 'auto';
+  }
+
+  // Cierra el modal al hacer clic fuera
+  document.addEventListener('DOMContentLoaded', function() {
+    const modal = document.getElementById('modal-ejemplos');
+    
+    modal.addEventListener('click', function(e) {
+      if (e.target === modal) {
+        cerrarEjemplo();
+      }
+    });
+  });
+
+  // Cierra con tecla ESC
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      cerrarEjemplo();
+    }
+  });
 </script>
 
 </body>
