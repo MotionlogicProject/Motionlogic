@@ -231,12 +231,14 @@
     }
     .gallery-item {
       border-radius: 12px; overflow: hidden; aspect-ratio: 3/4;
-      background: var(--gray-light); position: relative; cursor: pointer;
+      background: var(--gray-light); position: relative;
       transition: transform .3s;
       border: 1px solid rgba(74,103,65,0.1);
       box-shadow: 0 4px 15px rgba(74,103,65,0.08);
     }
-    .gallery-item:hover { transform: scale(1.05); box-shadow: 0 8px 25px rgba(74,103,65,0.15); }
+    /* Estilo específico para items interactivos */
+    .gallery-item[onclick] { cursor: pointer; }
+    .gallery-item[onclick]:hover { transform: scale(1.05); box-shadow: 0 8px 25px rgba(74,103,65,0.15); }
     .gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .gallery-item-overlay {
       position: absolute; inset: 0;
@@ -247,7 +249,7 @@
       transition: opacity .3s;
       gap: 12px;
     }
-    .gallery-item:hover .gallery-item-overlay { opacity: 1; }
+    .gallery-item[onclick]:hover .gallery-item-overlay { opacity: 1; }
     .gallery-item-overlay-title {
       font-family: var(--font-serif);
       font-size: 1.1rem; font-weight: 600;
@@ -614,39 +616,12 @@
   <div class="section-header centered fade-up">
     <span class="section-label">Ejemplos reales</span>
     <h2 class="section-title">Invitaciones que hemos creado</h2>
-    <p class="section-subtitle">Haz clic en cualquiera para ver una demostración completa e interactiva</p>
+    <p class="section-subtitle">Nuestra pieza destacada: <strong>Sofía & Pablo</strong>. Haz clic para ver la experiencia interactiva.</p>
   </div>
   <div class="gallery-grid">
 
-    <!-- CARLOS & LAURA -->
-    <div class="gallery-item fade-up" onclick="abrirEjemplo('carlos-laura', 'Carlos & Laura · 25.05.2025')">
-      <img src="carloslaura.png" alt="Invitación Carlos & Laura" />
-      <div class="gallery-item-overlay">
-        <div class="gallery-item-overlay-title">Carlos & Laura</div>
-        <div class="gallery-item-overlay-action">Ver invitación →</div>
-      </div>
-    </div>
-
-    <!-- SARA & DIEGO -->
-    <div class="gallery-item fade-up" onclick="abrirEjemplo('sara-diego', 'Sara & Diego · 15.09.2025')">
-      <img src="saradiego.png" alt="Invitación Sara & Diego" />
-      <div class="gallery-item-overlay">
-        <div class="gallery-item-overlay-title">Sara & Diego</div>
-        <div class="gallery-item-overlay-action">Ver invitación →</div>
-      </div>
-    </div>
-
-    <!-- ANA & DAVID -->
-    <div class="gallery-item fade-up" onclick="abrirEjemplo('ana-david', 'Ana & David · 22.08.2025')">
-      <img src="anadavid.png" alt="Invitación Ana & David" />
-      <div class="gallery-item-overlay">
-        <div class="gallery-item-overlay-title">Ana & David</div>
-        <div class="gallery-item-overlay-action">Ver invitación →</div>
-      </div>
-    </div>
-
-    <!-- SOFÍA & PABLO -->
-    <div class="gallery-item fade-up" onclick="abrirEjemplo('sofia-pablo', 'Sofía & Pablo · 10.07.2025')">
+    <!-- TU INVITACIÓN DESTACADA (INTERACTIVA) -->
+    <div class="gallery-item fade-up" onclick="abrirEjemplo('wedding/sofia-pablo/index_completo.html', 'Sofía & Pablo · 17.05.2026')">
       <img src="sofiapablo.png" alt="Invitación Sofía & Pablo" />
       <div class="gallery-item-overlay">
         <div class="gallery-item-overlay-title">Sofía & Pablo</div>
@@ -654,13 +629,18 @@
       </div>
     </div>
 
-    <!-- MARTA & JAVIER -->
-    <div class="gallery-item fade-up" onclick="abrirEjemplo('marta-javier', 'Marta & Javier · 30.06.2025')">
+    <!-- RESTO DE EJEMPLOS (ESTÁTICOS) -->
+    <div class="gallery-item fade-up" style="cursor: default;">
+      <img src="carloslaura.png" alt="Invitación Carlos & Laura" />
+    </div>
+    <div class="gallery-item fade-up" style="cursor: default;">
+      <img src="saradiego.png" alt="Invitación Sara & Diego" />
+    </div>
+    <div class="gallery-item fade-up" style="cursor: default;">
+      <img src="anadavid.png" alt="Invitación Ana & David" />
+    </div>
+    <div class="gallery-item fade-up" style="cursor: default;">
       <img src="martajavier.png" alt="Invitación Marta & Javier" />
-      <div class="gallery-item-overlay">
-        <div class="gallery-item-overlay-title">Marta & Javier</div>
-        <div class="gallery-item-overlay-action">Ver invitación →</div>
-      </div>
     </div>
 
   </div>
@@ -873,16 +853,13 @@
 
   fadeUpElements.forEach(el => observer.observe(el));
 
-  // ════ FUNCIONES MODAL ════
-  function abrirEjemplo(nombreArchivo, titulo) {
+  // ════ FUNCIONES MODAL ACTUALIZADAS ════
+  function abrirEjemplo(url, titulo) {
     const modal = document.getElementById('modal-ejemplos');
     const iframe = document.getElementById('modal-iframe');
     const tituloModal = document.getElementById('modal-titulo');
     
-    // Construye la URL correcta
-    const url = `ejemplos/${nombreArchivo}.html`;
-    
-    // Asigna valores
+    // Asigna la ruta directa y el título
     iframe.src = url;
     tituloModal.textContent = titulo;
     
@@ -897,15 +874,15 @@
     const modal = document.getElementById('modal-ejemplos');
     const iframe = document.getElementById('modal-iframe');
     
-    // Cierra el modal
+    // Oculta el modal y limpia el src del iframe
     modal.classList.remove('activo');
     iframe.src = '';
     
-    // Restaura scroll
+    // Restaura scroll en el body
     document.body.style.overflow = 'auto';
   }
 
-  // Cierra el modal al hacer clic fuera
+  // Cierra el modal al hacer clic fuera del contenido
   document.addEventListener('DOMContentLoaded', function() {
     const modal = document.getElementById('modal-ejemplos');
     
@@ -916,7 +893,7 @@
     });
   });
 
-  // Cierra con tecla ESC
+  // Cierra el modal pulsando la tecla Escape
   document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') {
       cerrarEjemplo();
