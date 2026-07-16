@@ -129,7 +129,6 @@
     }
     .btn-secondary:hover { background: var(--green); color: #fff; }
     
-    /* Contenedor del mockup */
     .hero-image {
       position: relative; border-radius: 20px; overflow: hidden;
       background: linear-gradient(135deg, #f5ede0, #e8d8b8);
@@ -224,10 +223,92 @@
     }
     .feature-desc { font-size: .95rem; color: var(--text); line-height: 1.7; }
 
-    /* ─── GALERIA ─────────────────────────────── */
+    /* ─── NUEVA GALERÍA (JERARQUÍA VISUAL) ────── */
     #galeria { background: var(--cream); }
+    
+    /* 1. Invitación Destacada */
+    .gallery-featured {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      align-items: center;
+      background: var(--white);
+      border-radius: 24px;
+      padding: 50px;
+      border: 2px solid var(--gold);
+      box-shadow: 0 20px 50px rgba(74,103,65,0.08);
+      margin-bottom: 80px;
+    }
+    .featured-image-container {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      aspect-ratio: 3/4;
+      background: var(--gray-light);
+      cursor: pointer;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--gray);
+    }
+    /* Estilos temporales para el "hueco" */
+    .featured-placeholder {
+      padding: 40px;
+      text-align: center;
+      color: var(--text);
+      font-size: 1.1rem;
+      font-weight: 600;
+      border: 2px dashed #ccc;
+      border-radius: 12px;
+      width: 80%;
+      height: 80%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 16px;
+    }
+    .featured-placeholder-icon {
+      font-size: 3rem;
+      color: var(--gold);
+    }
+    .featured-image-container img { width: 100%; height: 100%; object-fit: cover; display: none; /* Cambiar a block cuando tengas la imagen */ }
+    
+    .featured-overlay {
+      position: absolute; inset: 0;
+      background: rgba(74,103,65,0.85); display: flex;
+      align-items: center; justify-content: center;
+      color: #fff; opacity: 0; transition: opacity .3s;
+    }
+    .featured-image-container:hover .featured-overlay { opacity: 1; }
+    .featured-overlay-text { font-size: 1rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--gold); }
+    
+    .featured-info { padding-right: 20px; }
+    .featured-badge-text { display: inline-block; color: var(--gold); font-size: .8rem; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 16px; }
+    .featured-info h3 { font-family: var(--font-serif); font-size: 2.8rem; font-weight: 600; color: var(--green); margin-bottom: 20px; line-height: 1.1; }
+    .featured-info p { font-size: 1.05rem; color: var(--text); line-height: 1.8; margin-bottom: 32px; }
+
+    /* 2. Resto de invitaciones (Más pequeñas) */
+    .more-examples-header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .more-examples-header h3 {
+      font-family: var(--font-serif);
+      font-size: 2rem;
+      color: var(--green);
+      margin-bottom: 8px;
+    }
+    .more-examples-header p {
+      color: var(--text);
+      font-size: .95rem;
+    }
+
     .gallery-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; margin-top: 60px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Más pequeñas que antes */
+      gap: 20px;
     }
     .gallery-item {
       border-radius: 12px; overflow: hidden; aspect-ratio: 3/4;
@@ -235,11 +316,11 @@
       transition: transform .3s;
       border: 1px solid rgba(74,103,65,0.1);
       box-shadow: 0 4px 15px rgba(74,103,65,0.08);
+      cursor: pointer;
     }
-    /* Estilo específico para items interactivos */
-    .gallery-item[onclick] { cursor: pointer; }
-    .gallery-item[onclick]:hover { transform: scale(1.05); box-shadow: 0 8px 25px rgba(74,103,65,0.15); }
+    .gallery-item:hover { transform: scale(1.05); box-shadow: 0 8px 25px rgba(74,103,65,0.15); }
     .gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    
     .gallery-item-overlay {
       position: absolute; inset: 0;
       background: rgba(74,103,65,0.85); display: flex;
@@ -249,15 +330,9 @@
       transition: opacity .3s;
       gap: 12px;
     }
-    .gallery-item[onclick]:hover .gallery-item-overlay { opacity: 1; }
-    .gallery-item-overlay-title {
-      font-family: var(--font-serif);
-      font-size: 1.1rem; font-weight: 600;
-    }
-    .gallery-item-overlay-action {
-      font-size: .85rem; letter-spacing: 1px; text-transform: uppercase;
-      font-weight: 700; color: var(--gold);
-    }
+    .gallery-item:hover .gallery-item-overlay { opacity: 1; }
+    .gallery-item-overlay-title { font-family: var(--font-serif); font-size: 1.1rem; font-weight: 600; }
+    .gallery-item-overlay-action { font-size: .8rem; letter-spacing: 1px; text-transform: uppercase; font-weight: 700; color: var(--gold); }
 
     /* ─── PROCESO ────────────────────────────── */
     #proceso { background: var(--white); }
@@ -270,14 +345,8 @@
       transition: all .3s;
     }
     .process-step:hover { border-color: var(--gold); transform: translateY(-6px); }
-    .step-num {
-      font-family: var(--font-serif);
-      font-size: 2.8rem; font-weight: 600; color: var(--gold); margin-bottom: 12px;
-    }
-    .step-title {
-      font-family: var(--font-serif);
-      font-size: 1.2rem; font-weight: 600; color: var(--green); margin-bottom: 12px;
-    }
+    .step-num { font-family: var(--font-serif); font-size: 2.8rem; font-weight: 600; color: var(--gold); margin-bottom: 12px; }
+    .step-title { font-family: var(--font-serif); font-size: 1.2rem; font-weight: 600; color: var(--green); margin-bottom: 12px; }
     .step-desc { font-size: .9rem; color: var(--text); line-height: 1.6; }
 
     /* ─── TESTIMONIOS ─────────────────────────── */
@@ -298,10 +367,7 @@
     .contact-wrapper {
       display: grid; grid-template-columns: 1fr 1fr; gap: 60px; margin-top: 60px;
     }
-    .contact-info h3 {
-      font-family: var(--font-serif);
-      font-size: 1.4rem; font-weight: 600; color: var(--green); margin-bottom: 20px;
-    }
+    .contact-info h3 { font-family: var(--font-serif); font-size: 1.4rem; font-weight: 600; color: var(--green); margin-bottom: 20px; }
     .contact-info > p { color: var(--text); margin-bottom: 40px; line-height: 1.8; }
     .contact-items { display: flex; flex-direction: column; gap: 28px; }
     .contact-item { display: flex; gap: 16px; }
@@ -311,10 +377,7 @@
     .contact-item-text a { color: var(--green); text-decoration: none; transition: color .2s; }
     .contact-item-text a:hover { color: var(--gold); }
     .contact-form { background: var(--cream); border-radius: 16px; padding: 40px 32px; }
-    .contact-form h3 {
-      font-family: var(--font-serif);
-      font-size: 1.4rem; font-weight: 600; color: var(--green); margin-bottom: 28px;
-    }
+    .contact-form h3 { font-family: var(--font-serif); font-size: 1.4rem; font-weight: 600; color: var(--green); margin-bottom: 28px; }
     .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
     .form-group { display: flex; flex-direction: column; }
     .form-group label { font-size: .85rem; font-weight: 700; color: var(--dark); margin-bottom: 6px; letter-spacing: .5px; text-transform: uppercase; }
@@ -322,9 +385,7 @@
       padding: 12px 16px; border: 2px solid var(--gray); border-radius: 8px;
       font-family: var(--font-sans); font-size: .95rem; transition: border .2s;
     }
-    .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
-      outline: none; border-color: var(--green);
-    }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: var(--green); }
     .form-group textarea { resize: vertical; min-height: 120px; }
     .btn-submit {
       background: var(--green); color: #fff; border: none;
@@ -336,10 +397,7 @@
     /* ─── FOOTER ───────────────────────────── */
     footer { background: var(--dark); color: #fff; padding: 60px 5% 40px; }
     .footer-content { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 40px; }
-    .footer-logo {
-      font-family: var(--font-serif);
-      font-size: 1.5rem; font-weight: 600; margin-bottom: 12px;
-    }
+    .footer-logo { font-family: var(--font-serif); font-size: 1.5rem; font-weight: 600; margin-bottom: 12px; }
     .footer-logo span { color: var(--gold); }
     .footer-desc { font-size: .9rem; color: rgba(255,255,255,0.7); line-height: 1.6; margin-bottom: 20px; }
     .footer-socials { display: flex; gap: 12px; }
@@ -357,94 +415,63 @@
     }
     .footer-bottom a { color: var(--gold); text-decoration: none; }
 
-    /* ─── MODAL ──────────────────────────────── */
-    .modal-ejemplos {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.7);
-      z-index: 9999;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-      backdrop-filter: blur(4px);
+    /* ─── MODALES (IFRAME E IMAGEN) ──────────── */
+    /* Estilos base para ambos modales */
+    .modal-base {
+      display: none; position: fixed; inset: 0;
+      background: rgba(0, 0, 0, 0.8); z-index: 9999;
+      align-items: center; justify-content: center;
+      padding: 20px; backdrop-filter: blur(5px);
     }
+    .modal-base.activo { display: flex; animation: fadeIn 0.4s ease; }
+    
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes slideUp { from { transform: translateY(50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
 
-    .modal-ejemplos.activo {
-      display: flex;
-      animation: fadeIn 0.4s ease;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    .modal-content {
-      position: relative;
-      background: #fff;
-      border-radius: 8px;
-      width: 100%;
-      max-width: 800px;
-      height: 85vh;
-      max-height: 900px;
-      display: flex;
-      flex-direction: column;
+    /* Modal Iframe (Para la interactiva) */
+    .modal-content-iframe {
+      position: relative; background: #fff; border-radius: 8px;
+      width: 100%; max-width: 800px; height: 85vh;
+      display: flex; flex-direction: column;
       box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
       animation: slideUp 0.4s ease;
     }
+    .modal-header { padding: 20px; border-bottom: 1px solid rgba(90, 122, 82, 0.15); }
+    .modal-header h3 { font-family: var(--font-serif); font-size: 1.5rem; color: #2a3828; margin: 0; }
+    .modal-iframe { flex: 1; border: none; border-radius: 0 0 8px 8px; }
 
-    @keyframes slideUp {
-      from {
-        transform: translateY(50px);
-        opacity: 0;
-      }
-      to {
-        transform: translateY(0);
-        opacity: 1;
-      }
-    }
-
-    .modal-close {
-      position: absolute;
-      top: 16px;
-      right: 16px;
-      width: 40px;
-      height: 40px;
-      border: none;
-      background: rgba(42, 56, 40, 0.1);
-      color: #2a3828;
-      font-size: 1.5rem;
-      cursor: pointer;
-      border-radius: 50%;
+    /* Modal Imagen (Para expandir portadas) */
+    .modal-content-imagen {
+      position: relative;
+      max-width: 90vw;
+      max-height: 90vh;
       display: flex;
-      align-items: center;
       justify-content: center;
-      transition: all 0.2s;
-      z-index: 10001;
+      align-items: center;
+      animation: slideUp 0.4s ease;
+    }
+    .modal-content-imagen img {
+      max-width: 100%;
+      max-height: 85vh;
+      border-radius: 12px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+      object-fit: contain;
     }
 
-    .modal-close:hover {
-      background: rgba(42, 56, 40, 0.2);
+    /* Botón de cierre genérico */
+    .modal-close {
+      position: absolute; top: -15px; right: -15px;
+      width: 40px; height: 40px; border: none;
+      background: #fff; color: var(--dark);
+      font-size: 1.5rem; cursor: pointer; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.2s; z-index: 10001;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
     }
-
-    .modal-header {
-      padding: 20px;
-      border-bottom: 1px solid rgba(90, 122, 82, 0.15);
-    }
-
-    .modal-header h3 {
-      font-family: var(--font-serif);
-      font-size: 1.5rem;
-      color: #2a3828;
-      margin: 0;
-    }
-
-    .modal-iframe {
-      flex: 1;
-      border: none;
-      border-radius: 0 0 8px 8px;
-    }
+    .modal-close:hover { background: var(--gold); color: #fff; transform: scale(1.1); }
+    /* Ajuste de posición del botón para el modal iframe */
+    .modal-content-iframe .modal-close { top: 16px; right: 16px; background: rgba(42, 56, 40, 0.1); box-shadow: none; }
+    .modal-content-iframe .modal-close:hover { background: rgba(42, 56, 40, 0.2); color: var(--dark); }
 
     /* ─── ANIMATIONS ──────────────────────────── */
     .fade-up { opacity: 0; transform: translateY(40px); }
@@ -462,7 +489,8 @@
       .form-row { grid-template-columns: 1fr; }
       .section-title { font-size: 1.8rem; }
       .hero-text h1 { font-size: 2rem; }
-      .modal-content { max-width: 100%; height: 90vh; }
+      .gallery-featured { grid-template-columns: 1fr; padding: 30px; gap: 30px; }
+      .featured-info h3 { font-size: 2.2rem; }
     }
   </style>
 </head>
@@ -505,8 +533,6 @@
         <a href="#paquetes" class="btn-secondary">Ver paquetes</a>
       </div>
     </div>
-    
-    <!-- CONTENEDOR CON TU NUEVO MOCKUP -->
     <div class="hero-image">
       <img src="mockup.png" alt="Mockup de invitación digital de boda en iPhone" style="width: 100%; height: auto; max-height: 600px; display: block; margin: 0 auto; filter: drop-shadow(0 20px 40px rgba(0,0,0,0.05));" />
     </div>
@@ -514,6 +540,7 @@
 </section>
 
 <!-- PAQUETES -->
+<!-- ... (El contenido de paquetes sigue igual que en tu versión anterior) ... -->
 <section id="paquetes">
   <div class="section-header centered fade-up">
     <span class="section-label">Planes disponibles</span>
@@ -536,7 +563,6 @@
       </ul>
       <button class="package-cta">Solicitar</button>
     </div>
-
     <div class="package-card featured fade-up">
       <div class="package-badge">RECOMENDADO</div>
       <div class="package-name">Smart Wedding</div>
@@ -552,7 +578,6 @@
       </ul>
       <button class="package-cta">Solicitar</button>
     </div>
-
     <div class="package-card fade-up">
       <div class="package-badge">PREMIUM</div>
       <div class="package-name">Experiencia Total</div>
@@ -572,6 +597,7 @@
 </section>
 
 <!-- CARACTERÍSTICAS -->
+<!-- ... (El contenido de características sigue igual) ... -->
 <section id="caracteristicas">
   <div class="section-header centered fade-up">
     <span class="section-label">¿Por qué MotionWedding?</span>
@@ -611,45 +637,96 @@
   </div>
 </section>
 
-<!-- GALERÍA DE EJEMPLOS -->
+<!-- NUEVA GALERÍA DE EJEMPLOS CON JERARQUÍA -->
 <section id="galeria">
   <div class="section-header centered fade-up">
-    <span class="section-label">Ejemplos reales</span>
+    <span class="section-label">Experiencias Reales</span>
     <h2 class="section-title">Invitaciones que hemos creado</h2>
-    <p class="section-subtitle">Nuestra pieza destacada: <strong>Sofía & Pablo</strong>. Haz clic para ver la experiencia interactiva.</p>
   </div>
-  <div class="gallery-grid">
 
-    <!-- TU INVITACIÓN DESTACADA (INTERACTIVA) -->
-    <div class="gallery-item fade-up" onclick="abrirEjemplo('wedding/sofia-pablo/index_completo.html', 'Sofía & Pablo · 17.05.2026')">
-      <img src="sofiapablo.png" alt="Invitación Sofía & Pablo" />
+  <!-- 1. INVITACIÓN DESTACADA (MARINA & MANUEL) -->
+  <div class="gallery-featured fade-up">
+    <!-- Contenedor izquierdo: Imagen (o hueco) -->
+    <div class="featured-image-container" onclick="abrirModalInteractiva('wedding/marina-manuel/index.html', 'Marina & Manuel · Septiembre 2026')">
+      
+      <!-- HUECO PREPARADO. Cuando tengas la imagen, borra este div y usa la etiqueta <img> de abajo -->
+      <div class="featured-placeholder">
+        <div class="featured-placeholder-icon">📸</div>
+        <p>[ Espacio reservado para la composición de la portada de Marina & Manuel ]</p>
+      </div>
+      
+      <!-- IMAGEN REAL (Descomentar y añadir la ruta cuando esté lista) -->
+      <!-- <img src="marinamanuel.png" alt="Invitación Marina & Manuel" /> -->
+      
+      <div class="featured-overlay">
+        <div class="featured-overlay-text">Ver experiencia interactiva →</div>
+      </div>
+    </div>
+    
+    <!-- Contenedor derecho: Información -->
+    <div class="featured-info">
+      <div class="featured-badge-text">Nuestra pieza destacada</div>
+      <h3>Marina & Manuel</h3>
+      <p>Descubre el nivel de detalle, la fluidez de las animaciones y la automatización inteligente que podemos aplicar a tu gran día. Una experiencia interactiva completa diseñada para sorprender a los invitados y facilitarte la organización al 100%.</p>
+      <button class="btn-primary" onclick="abrirModalInteractiva('wedding/marina-manuel/index.html', 'Marina & Manuel · Septiembre 2026')">
+        Ver invitación completa
+      </button>
+    </div>
+  </div>
+
+  <!-- 2. MÁS EJEMPLOS (CUADRÍCULA PEQUEÑA CON MODAL DE IMAGEN) -->
+  <div class="more-examples-header fade-up">
+    <h3>Más diseños y estilos</h3>
+    <p>Haz clic en cualquier portada para ampliarla y ver los detalles.</p>
+  </div>
+  
+  <div class="gallery-grid fade-up">
+    <div class="gallery-item" onclick="abrirModalImagen('sofiapablo.png')">
+      <img src="sofiapablo.png" alt="Portada Sofía & Pablo" />
       <div class="gallery-item-overlay">
         <div class="gallery-item-overlay-title">Sofía & Pablo</div>
-        <div class="gallery-item-overlay-action">Ver invitación →</div>
+        <div class="gallery-item-overlay-action">🔍 Ampliar portada</div>
+      </div>
+    </div>
+    
+    <div class="gallery-item" onclick="abrirModalImagen('carloslaura.png')">
+      <img src="carloslaura.png" alt="Portada Carlos & Laura" />
+      <div class="gallery-item-overlay">
+        <div class="gallery-item-overlay-title">Carlos & Laura</div>
+        <div class="gallery-item-overlay-action">🔍 Ampliar portada</div>
+      </div>
+    </div>
+    
+    <div class="gallery-item" onclick="abrirModalImagen('saradiego.png')">
+      <img src="saradiego.png" alt="Portada Sara & Diego" />
+      <div class="gallery-item-overlay">
+        <div class="gallery-item-overlay-title">Sara & Diego</div>
+        <div class="gallery-item-overlay-action">🔍 Ampliar portada</div>
+      </div>
+    </div>
+    
+    <div class="gallery-item" onclick="abrirModalImagen('anadavid.png')">
+      <img src="anadavid.png" alt="Portada Ana & David" />
+      <div class="gallery-item-overlay">
+        <div class="gallery-item-overlay-title">Ana & David</div>
+        <div class="gallery-item-overlay-action">🔍 Ampliar portada</div>
       </div>
     </div>
 
-    <!-- RESTO DE EJEMPLOS (ESTÁTICOS) -->
-    <div class="gallery-item fade-up" style="cursor: default;">
-      <img src="carloslaura.png" alt="Invitación Carlos & Laura" />
+    <div class="gallery-item" onclick="abrirModalImagen('martajavier.png')">
+      <img src="martajavier.png" alt="Portada Marta & Javier" />
+      <div class="gallery-item-overlay">
+        <div class="gallery-item-overlay-title">Marta & Javier</div>
+        <div class="gallery-item-overlay-action">🔍 Ampliar portada</div>
+      </div>
     </div>
-    <div class="gallery-item fade-up" style="cursor: default;">
-      <img src="saradiego.png" alt="Invitación Sara & Diego" />
-    </div>
-    <div class="gallery-item fade-up" style="cursor: default;">
-      <img src="anadavid.png" alt="Invitación Ana & David" />
-    </div>
-    <div class="gallery-item fade-up" style="cursor: default;">
-      <img src="martajavier.png" alt="Invitación Marta & Javier" />
-    </div>
-
   </div>
 </section>
 
-<!-- MODAL PARA INVITACIONES -->
-<div id="modal-ejemplos" class="modal-ejemplos">
-  <div class="modal-content">
-    <button class="modal-close" onclick="cerrarEjemplo()">✕</button>
+<!-- MODAL 1: PARA INVITACIONES INTERACTIVAS (IFRAME) -->
+<div id="modal-interactiva" class="modal-base">
+  <div class="modal-content-iframe">
+    <button class="modal-close" onclick="cerrarModalInteractiva()">✕</button>
     <div class="modal-header">
       <h3 id="modal-titulo">Invitación</h3>
     </div>
@@ -657,7 +734,16 @@
   </div>
 </div>
 
+<!-- MODAL 2: PARA AMPLIAR IMÁGENES ESTÁTICAS -->
+<div id="modal-imagen" class="modal-base">
+  <div class="modal-content-imagen">
+    <button class="modal-close" onclick="cerrarModalImagen()">✕</button>
+    <img id="modal-img-src" src="" alt="Portada de invitación ampliada" />
+  </div>
+</div>
+
 <!-- PROCESO -->
+<!-- ... (El contenido de proceso, testimonios, contacto y footer sigue igual) ... -->
 <section id="proceso">
   <div class="section-header centered fade-up">
     <span class="section-label">Cómo trabajamos</span>
@@ -837,10 +923,7 @@
 
   // Animaciones Fade-Up al hacer scroll
   const fadeUpElements = document.querySelectorAll('.fade-up');
-  const observerOptions = {
-    threshold: 0.15,
-    rootMargin: '0px 0px -50px 0px'
-  };
+  const observerOptions = { threshold: 0.15, rootMargin: '0px 0px -50px 0px' };
 
   const observer = new IntersectionObserver((entries, observer) => {
     entries.forEach(entry => {
@@ -853,50 +936,63 @@
 
   fadeUpElements.forEach(el => observer.observe(el));
 
-  // ════ FUNCIONES MODAL ACTUALIZADAS ════
-  function abrirEjemplo(url, titulo) {
-    const modal = document.getElementById('modal-ejemplos');
+  // ════ LÓGICA MODAL 1: INVITACIÓN INTERACTIVA (IFRAME) ════
+  function abrirModalInteractiva(url, titulo) {
+    const modal = document.getElementById('modal-interactiva');
     const iframe = document.getElementById('modal-iframe');
     const tituloModal = document.getElementById('modal-titulo');
     
-    // Asigna la ruta directa y el título
     iframe.src = url;
     tituloModal.textContent = titulo;
-    
-    // Muestra el modal
     modal.classList.add('activo');
-    
-    // Evita scroll en el body
     document.body.style.overflow = 'hidden';
   }
 
-  function cerrarEjemplo() {
-    const modal = document.getElementById('modal-ejemplos');
+  function cerrarModalInteractiva() {
+    const modal = document.getElementById('modal-interactiva');
     const iframe = document.getElementById('modal-iframe');
-    
-    // Oculta el modal y limpia el src del iframe
     modal.classList.remove('activo');
     iframe.src = '';
-    
-    // Restaura scroll en el body
     document.body.style.overflow = 'auto';
   }
 
-  // Cierra el modal al hacer clic fuera del contenido
-  document.addEventListener('DOMContentLoaded', function() {
-    const modal = document.getElementById('modal-ejemplos');
+  // ════ LÓGICA MODAL 2: AMPLIAR IMAGEN ESTÁTICA ════
+  function abrirModalImagen(rutaImagen) {
+    const modal = document.getElementById('modal-imagen');
+    const img = document.getElementById('modal-img-src');
     
-    modal.addEventListener('click', function(e) {
-      if (e.target === modal) {
-        cerrarEjemplo();
-      }
+    img.src = rutaImagen;
+    modal.classList.add('activo');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function cerrarModalImagen() {
+    const modal = document.getElementById('modal-imagen');
+    const img = document.getElementById('modal-img-src');
+    
+    modal.classList.remove('activo');
+    setTimeout(() => { img.src = ''; }, 300); // Limpia la imagen tras la animación
+    document.body.style.overflow = 'auto';
+  }
+
+  // ════ CERRAR MODALES AL HACER CLIC FUERA O CON ESC ════
+  document.addEventListener('DOMContentLoaded', function() {
+    const modalInteractiva = document.getElementById('modal-interactiva');
+    const modalImagen = document.getElementById('modal-imagen');
+    
+    modalInteractiva.addEventListener('click', function(e) {
+      if (e.target === modalInteractiva) cerrarModalInteractiva();
+    });
+    
+    modalImagen.addEventListener('click', function(e) {
+      if (e.target === modalImagen) cerrarModalImagen();
     });
   });
 
-  // Cierra el modal pulsando la tecla Escape
   document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') {
-      cerrarEjemplo();
+      cerrarModalInteractiva();
+      cerrarModalImagen();
     }
   });
 </script>
