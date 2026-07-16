@@ -252,28 +252,7 @@
       justify-content: center;
       border: 1px solid var(--gray);
     }
-    /* Estilos temporales para el "hueco" */
-    .featured-placeholder {
-      padding: 40px;
-      text-align: center;
-      color: var(--text);
-      font-size: 1.1rem;
-      font-weight: 600;
-      border: 2px dashed #ccc;
-      border-radius: 12px;
-      width: 80%;
-      height: 80%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      gap: 16px;
-    }
-    .featured-placeholder-icon {
-      font-size: 3rem;
-      color: var(--gold);
-    }
-    .featured-image-container img { width: 100%; height: 100%; object-fit: cover; display: none; /* Cambiar a block cuando tengas la imagen */ }
+    .featured-image-container img { width: 100%; height: 100%; object-fit: cover; display: block; }
     
     .featured-overlay {
       position: absolute; inset: 0;
@@ -307,7 +286,7 @@
 
     .gallery-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Más pequeñas que antes */
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 20px;
     }
     .gallery-item {
@@ -416,7 +395,6 @@
     .footer-bottom a { color: var(--gold); text-decoration: none; }
 
     /* ─── MODALES (IFRAME E IMAGEN) ──────────── */
-    /* Estilos base para ambos modales */
     .modal-base {
       display: none; position: fixed; inset: 0;
       background: rgba(0, 0, 0, 0.8); z-index: 9999;
@@ -428,19 +406,21 @@
     @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     @keyframes slideUp { from { transform: translateY(50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
 
-    /* Modal Iframe (Para la interactiva) */
+    /* Modal Iframe - Rediseñado en Formato Vertical de Móvil */
     .modal-content-iframe {
-      position: relative; background: #fff; border-radius: 8px;
-      width: 100%; max-width: 800px; height: 85vh;
+      position: relative; background: #fff; border-radius: 24px;
+      width: 100%; max-width: 420px; height: 85vh; /* Formato vertical óptimo */
       display: flex; flex-direction: column;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
       animation: slideUp 0.4s ease;
+      overflow: hidden;
+      border: 6px solid #2c2c2c; /* Marco sutil simulando un terminal o pantalla */
     }
-    .modal-header { padding: 20px; border-bottom: 1px solid rgba(90, 122, 82, 0.15); }
-    .modal-header h3 { font-family: var(--font-serif); font-size: 1.5rem; color: #2a3828; margin: 0; }
-    .modal-iframe { flex: 1; border: none; border-radius: 0 0 8px 8px; }
+    .modal-header { padding: 18px 20px; border-bottom: 1px solid rgba(90, 122, 82, 0.15); background: var(--cream); }
+    .modal-header h3 { font-family: var(--font-serif); font-size: 1.3rem; color: #2a3828; margin: 0; text-align: center; }
+    .modal-iframe { flex: 1; border: none; border-radius: 0 0 18px 18px; }
 
-    /* Modal Imagen (Para expandir portadas) */
+    /* Modal Imagen */
     .modal-content-imagen {
       position: relative;
       max-width: 90vw;
@@ -469,9 +449,10 @@
       box-shadow: 0 4px 15px rgba(0,0,0,0.2);
     }
     .modal-close:hover { background: var(--gold); color: #fff; transform: scale(1.1); }
-    /* Ajuste de posición del botón para el modal iframe */
-    .modal-content-iframe .modal-close { top: 16px; right: 16px; background: rgba(42, 56, 40, 0.1); box-shadow: none; }
-    .modal-content-iframe .modal-close:hover { background: rgba(42, 56, 40, 0.2); color: var(--dark); }
+    
+    /* Ajuste de posición del botón para el modal iframe vertical */
+    .modal-content-iframe .modal-close { top: 12px; right: 16px; background: rgba(42, 56, 40, 0.08); box-shadow: none; width: 34px; height: 34px; font-size: 1.2rem; }
+    .modal-content-iframe .modal-close:hover { background: rgba(42, 56, 40, 0.15); color: var(--dark); }
 
     /* ─── ANIMATIONS ──────────────────────────── */
     .fade-up { opacity: 0; transform: translateY(40px); }
@@ -642,20 +623,11 @@
     <h2 class="section-title">Invitaciones que hemos creado</h2>
   </div>
 
-  <!-- 1. INVITACIÓN DESTACADA (MARINA & MANUEL - MODIFICADO CON DEMO.HTML) -->
+  <!-- 1. INVITACIÓN DESTACADA (MARINA & MANUEL - CON PORTADA1.PNG) -->
   <div class="gallery-featured fade-up">
-    <!-- Contenedor izquierdo: Imagen (o hueco) que abre la demo -->
+    <!-- Contenedor izquierdo: Imagen de portada real que abre la demo -->
     <div class="featured-image-container" onclick="abrirModalInteractiva('demo.html', 'Marina & Manuel · Septiembre 2026')">
-      
-      <!-- HUECO PREPARADO. Cuando tengas la imagen, borra este div y usa la etiqueta <img> de abajo -->
-      <div class="featured-placeholder">
-        <div class="featured-placeholder-icon">📸</div>
-        <p>[ Espacio reservado para la composición de la portada de Marina & Manuel ]</p>
-      </div>
-      
-      <!-- IMAGEN REAL (Descomentar y añadir la ruta cuando esté lista) -->
-      <!-- <img src="marinamanuel.png" alt="Invitación Marina & Manuel" /> -->
-      
+      <img src="portada1.png" alt="Invitación Marina & Manuel" />
       <div class="featured-overlay">
         <div class="featured-overlay-text">Ver experiencia interactiva →</div>
       </div>
@@ -721,7 +693,7 @@
   </div>
 </section>
 
-<!-- MODAL 1: PARA INVITACIONES INTERACTIVAS (IFRAME) -->
+<!-- MODAL 1: PARA INVITACIONES INTERACTIVAS (IFRAME VERTICAL) -->
 <div id="modal-interactiva" class="modal-base">
   <div class="modal-content-iframe">
     <button class="modal-close" onclick="cerrarModalInteractiva()">✕</button>
