@@ -623,9 +623,8 @@
     <h2 class="section-title">Invitaciones que hemos creado</h2>
   </div>
 
-  <!-- 1. INVITACIÓN DESTACADA (MARINA & MANUEL - CON PORTADA1.PNG) -->
+  <!-- 1. INVITACIÓN DESTACADA -->
   <div class="gallery-featured fade-up">
-    <!-- Contenedor izquierdo: Imagen de portada real que abre la demo -->
     <div class="featured-image-container" onclick="abrirModalInteractiva('demo.html', 'Marina & Manuel · Septiembre 2026')">
       <img src="portada1.png" alt="Invitación Marina & Manuel" />
       <div class="featured-overlay">
@@ -633,7 +632,6 @@
       </div>
     </div>
     
-    <!-- Contenedor derecho: Información -->
     <div class="featured-info">
       <div class="featured-badge-text">Nuestra pieza destacada</div>
       <h3>Marina & Manuel</h3>
@@ -644,7 +642,6 @@
     </div>
   </div>
 
-  <!-- 2. MÁS EJEMPLOS -->
   <div class="more-examples-header fade-up">
     <h3>Más diseños y estilos</h3>
     <p>Haz clic en cualquier portada para ampliarla y ver los detalles.</p>
@@ -869,6 +866,12 @@
         <li><a href="#">Aviso Legal</a></li>
         <li><a href="#">Privacidad</a></li>
         <li><a href="#">Cookies</a></li>
+        <!-- Sello de Bodas.net integrado -->
+        <li style="margin-top: 15px;">
+            <a rel='nofollow' href='https://www.bodas.net' title='Bodas.net'>
+                <img alt='Bodas.net' src='https://www.bodas.net/images/sellos/Sello-bodas--gg301133.png' style='border-width:0px; max-width: 120px;' />
+            </a>
+        </li>
       </ul>
     </div>
   </div>
@@ -880,7 +883,6 @@
 
 <!-- SCRIPTS INTERACTIVOS -->
 <script>
-  // Navbar cambio de estilo con scroll
   const navbar = document.getElementById('navbar');
   window.addEventListener('scroll', () => {
     if (window.scrollY > 50) {
@@ -890,10 +892,8 @@
     }
   });
 
-  // Animaciones Fade-Up al hacer scroll
   const fadeUpElements = document.querySelectorAll('.fade-up');
   const observerOptions = { threshold: 0.15, rootMargin: '0px 0px -50px 0px' };
-
   const observer = new IntersectionObserver((entries, observer) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -905,7 +905,6 @@
 
   fadeUpElements.forEach(el => observer.observe(el));
 
-  // ════ LÓGICA MODAL 1: INVITACIÓN INTERACTIVA (IFRAME) ════
   function abrirModalInteractiva(url, titulo) {
     const modal = document.getElementById('modal-interactiva');
     const iframe = document.getElementById('modal-iframe');
@@ -925,7 +924,6 @@
     document.body.style.overflow = 'auto';
   }
 
-  // ════ LÓGICA MODAL 2: AMPLIAR IMAGEN ESTÁTICA ════
   function abrirModalImagen(rutaImagen) {
     const modal = document.getElementById('modal-imagen');
     const img = document.getElementById('modal-img-src');
@@ -940,11 +938,10 @@
     const img = document.getElementById('modal-img-src');
     
     modal.classList.remove('activo');
-    setTimeout(() => { img.src = ''; }, 300); // Limpia la imagen tras la animación
+    setTimeout(() => { img.src = ''; }, 300);
     document.body.style.overflow = 'auto';
   }
 
-  // ════ CERRAR MODALES AL HACER CLIC FUERA O CON ESC ════
   document.addEventListener('DOMContentLoaded', function() {
     const modalInteractiva = document.getElementById('modal-interactiva');
     const modalImagen = document.getElementById('modal-imagen');
